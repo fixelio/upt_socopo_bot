@@ -1,4 +1,4 @@
-const { Telegraf } = require('telegraf')
+const { Telegraf, Markup } = require('telegraf')
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -14,9 +14,8 @@ bot.telegram.setMyCommands([
 
 bot.start(ctx => {
   try {
-    const saludo = tipoSaludo()
     const usuario = ctx.from.first_name
-    const respuesta = `${saludo} ${usuario}. Soy el bot de la UPT José Félix Ribas del núcleo de Socopó.
+    const respuesta = `Hola ${usuario}. Soy el bot de la UPT José Félix Ribas del núcleo de Socopó.
 
 Estoy aquí para ayudarte a que te enteres de las noticias y anuncios publicados por la universidad.
 
@@ -101,15 +100,6 @@ bot.action('cb_eventos', ctx => {
 });
 
 bot.launch();
-
-function tipoSaludo() {
-  const fecha = new Date(Date.now())
-  const hora = fecha.getHours()
-
-  if (hora >= 1 && hora < 12) return 'Buenos días'
-  if (hora >= 12 && hora < 18) return 'Buenas tardes'
-  return 'Buenas noches'
-}
 
 exports.handler = async(event) => {
   try {
