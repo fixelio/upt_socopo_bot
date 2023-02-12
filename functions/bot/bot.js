@@ -47,14 +47,14 @@ bot.command('fechas', ctx => {
     });
   }
   catch(error) {
-    console.log('Error en fechas:', error)
+    console.log('Error en /fechas:', error)
     return ctx.reply('Ocurrió un error interno')
   }
 })
 
 bot.command('grupo', ctx => {
   try {
-    ctx.reply(`Este es el enlace de invitación de nuestro grupo de Telegram:\n\nhttps://t.me/+fSlYGFZpr_EwM2Ux\n\n¡¡Siéntete libre de entrar y chatear!!`)
+    ctx.reply('Este es el enlace de invitación de nuestro grupo de Telegram:\n\nhttps://t.me/+fSlYGFZpr_EwM2Ux\n\n¡¡Siéntete libre de entrar y chatear!!')
   }
   catch (error) {
     console.log('Error en /grupo:', error)
@@ -107,7 +107,7 @@ function tipoSaludo() {
   const hora = fecha.getHours()
 
   if (hora >= 1 && hora < 12) return 'Buenos días'
-  if (hora >= 12 && hora < 18) return 'Buenas tarder'
+  if (hora >= 12 && hora < 18) return 'Buenas tardes'
   return 'Buenas noches'
 }
 
