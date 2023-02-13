@@ -1,18 +1,32 @@
-const { Telegraf, Markup } = require('telegraf')
+const { Telegraf/*, Markup*/ } = require('telegraf')
 const dotenv = require('dotenv')
 
 dotenv.config()
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+function main() {
 
+  try {
+    const bot = new Telegraf(process.env.BOT_TOKEN)
+    bot.start(ctx => {
+      ctx.reply('Hola. En este momento estoy recibiendo mantenimiento.');
+    })
+
+    console.log('Bot inicializado')
+  }
+  catch(error) {
+    console.log('Error:', error)
+  }
+}
+
+/*
 bot.telegram.setMyCommands([
   { command: '/start', description: 'Inicia la conversación' },
   { command: '/fechas', description: 'Información sobre fechas y eventos' },
   { command: '/grupo', description: 'Enlace al grupo de Telegram' },
   { command: '/desarrolladores', description: 'Información sobre los creadores del bot'}
 ]);
-
-bot.start(ctx => {
+*/
+  /*
   try {
     const usuario = ctx.from.first_name
     const respuesta = `Hola ${usuario}. Soy el bot de la UPT José Félix Ribas del núcleo de Socopó.
@@ -31,9 +45,8 @@ A continuación te muestro los comandos que te puedo ofrecer:
   catch(error) {
     console.error('Error in start:', error)
     return ctx.reply('Ocurrió un error interno.')
-  }
-})
-
+  }*/
+/*
 bot.command('fechas', ctx => {
   try {
     ctx.reply('Dime, ¿En qué estas interesado? Para hacérmelo saber, ¡solo pulsa el botón de tu elección!', {
@@ -99,7 +112,7 @@ bot.action('cb_eventos', ctx => {
   ctx.reply(mensaje)
 });
 
-bot.launch();
+bot.launch();*/
 
 exports.handler = async(event) => {
   try {
@@ -111,3 +124,5 @@ exports.handler = async(event) => {
     return { statusCode: 400, body: "This endpoint is meant for bot and telegram communication" }
   }
 }
+
+main()
