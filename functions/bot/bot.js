@@ -1,4 +1,4 @@
-const { Telegraf/*, Markup*/ } = require('telegraf')
+const { Telegraf, Markup } = require('telegraf')
 const dotenv = require('dotenv')
 
 dotenv.config()
