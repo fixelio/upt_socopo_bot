@@ -2,8 +2,16 @@ const { Telegraf } = require('telegraf')
 const startAction = require('./actions/start');
 const grupoAction = require('./actions/grupo');
 const desarrolladoresAction = require('./actions/desarrolladores');
+const fechasAction = require('./actions/fechas');
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
+bot.telegram.setMyCommands([
+  { command: '/start', description: 'Inicia la conversación' },
+  { command: '/fechas', description: 'Información sobre fechas y eventos' },
+  { command: '/grupo', description: 'Enlace al grupo de Telegram' },
+  { command: '/desarrolladores', description: 'Información sobre los creadores del bot' }
+]);
 
 bot.start(ctx => {
   return startAction(ctx);
@@ -15,6 +23,31 @@ bot.command('grupo', ctx => {
 
 bot.command('desarrolladores', ctx => {
   return desarrolladoresAction(ctx);
+});
+
+bot.command('fechas', ctx => {
+  return fechasAction(ctx);
+});
+
+//******************************
+//
+//  Actions
+//
+//********************************
+
+bot.action('cb_calendario_académico', ctx => {
+  return ctx.reply('Lo sentimos. Aún estamos trabajando en esta área...')
+});
+
+bot.action('cb_fecha_inscripcion', ctx => {
+  return ctx.reply('Lo sentimos. Aún estamos trabajando en esta área...')
+});
+
+bot.action('cb_eventos', ctx => {
+  const eventos = ['De momento no tengo ningún evento registrado.\n\nSi necesitas preguntar algo, puedes hacerlo en nuestro grupo: https://t.me/+fSlYGFZpr_EwM2Ux'];
+  const mensaje = eventos.join('\n----\n');
+
+  return ctx.reply(mensaje);
 });
 
 exports.handler = async(event) => {
