@@ -1,6 +1,7 @@
 const { Telegraf } = require('telegraf')
 const startAction = require('./actions/start');
 const grupoAction = require('./actions/grupo');
+const desarrolladoresAction = require('./actions/desarrolladores');
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -10,6 +11,10 @@ bot.start(ctx => {
 
 bot.command('grupo', ctx => {
   return grupoAction(ctx);
+});
+
+bot.command('desarrolladores', ctx => {
+  return desarrolladoresAction(ctx);
 });
 
 exports.handler = async(event) => {
