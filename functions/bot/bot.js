@@ -11,6 +11,8 @@ function main() {
       ctx.reply('Hola. En este momento estoy recibiendo mantenimiento.');
     })
 
+    bot.launch()
+
     console.log('Bot inicializado')
   }
   catch(error) {
