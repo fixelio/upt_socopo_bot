@@ -1,10 +1,15 @@
 const { Telegraf } = require('telegraf')
 const startAction = require('./actions/start');
+const grupoAction = require('./actions/grupo');
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start(ctx => {
   return startAction(ctx);
+});
+
+bot.command('grupo', ctx => {
+  return grupoAction(ctx);
 });
 
 exports.handler = async(event) => {
