@@ -4,14 +4,17 @@ const grupoAction = require('./actions/grupo');
 const desarrolladoresAction = require('./actions/desarrolladores');
 const fechasAction = require('./actions/fechas');
 const discordAction = require('./actions/discord');
+const ayudaAction = require('./actions/ayuda');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.telegram.setMyCommands([
   { command: '/start', description: 'Inicia la conversación' },
-  { command: '/fechas', description: 'Información sobre fechas y eventos' },
+  { command: '/discord', description: 'Enlace a la comunidad de discord' },
   { command: '/grupo', description: 'Enlace al grupo de Telegram' },
-  { command: '/desarrolladores', description: 'Información sobre los creadores del bot' }
+  { command: '/fechas', description: 'Información sobre fechas y eventos' },
+  { command: '/desarrolladores', description: 'Información sobre los creadores del bot' },
+  { command: '/ayuda', description: 'Muestra ayuda interactiva' }
 ]);
 
 bot.start(ctx => {
@@ -32,6 +35,10 @@ bot.command('fechas', ctx => {
 
 bot.command('discord', ctx => {
   return discordAction(ctx);
+});
+
+bot.command('ayuda', ctx => {
+  return ayudaAction(ctx);
 });
 
 //******************************
