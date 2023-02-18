@@ -3,6 +3,7 @@ const startAction = require('./actions/start');
 const grupoAction = require('./actions/grupo');
 const desarrolladoresAction = require('./actions/desarrolladores');
 const fechasAction = require('./actions/fechas');
+const discordAction = require('./actions/discord');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -27,6 +28,10 @@ bot.command('desarrolladores', ctx => {
 
 bot.command('fechas', ctx => {
   return fechasAction(ctx);
+});
+
+bot.command('discord', ctx => {
+  return discordAction(ctx);
 });
 
 //******************************
