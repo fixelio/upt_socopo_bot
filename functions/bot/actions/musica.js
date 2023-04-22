@@ -6,7 +6,7 @@ async function findVideoInfo(query) {
 }
 
 module.exports = async ctx => {
-  const name = ctx.update.message.text
+  const name = ctx.message.text
     .split(' ')
     ?.slice(1)
     ?.join(' ');
