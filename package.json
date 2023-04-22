@@ -19,6 +19,7 @@
   "homepage": "https://github.com/fixelio/upt_socopo_bot#readme",
   "dependencies": {
     "netlify-lambda": "^2.0.15",
-    "telegraf": "^4.11.2"
+    "telegraf": "^4.11.2",
+    "yt-search": "^2.10.4"
   }
 }
