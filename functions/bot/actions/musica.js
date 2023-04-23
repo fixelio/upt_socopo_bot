@@ -17,8 +17,8 @@ module.exports = async ctx => {
 
   const video = await findVideoInfo(name);
   if (video === null) {
-    return ctx.reply('No se han encontrado resultados de tu búsqueda...');
+    return ctx.reply(`No hay resultados para "${name}"`);
   }
 
-  return ctx.reply(`Canción: ${video.title} Tu búsqueda: ${name}`);
+  return ctx.reply(`${video.title}: ${video.url}`);
 }
