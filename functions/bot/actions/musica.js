@@ -6,19 +6,24 @@ async function findVideoInfo(query) {
 }
 
 module.exports = async ctx => {
-  const name = ctx.message.text
-    .split(' ')
-    ?.slice(1)
-    ?.join(' ');
+  try {
+    const name = ctx.message.text
+      .split(' ')
+      ?.slice(1)
+      ?.join(' ');
 
-  if (!name) {
-    return ctx.reply('Debes escribir el nombre de la canción en el comando. Por ejemplo: /musica nombre_de_la_canción');
+    if (!name) {
+      return ctx.reply('Debes escribir el nombre de la canción en el comando. Por ejemplo: /musica nombre_de_la_canción');
+    }
+
+    const video = await findVideoInfo(name);
+    if (!video) {
+      return ctx.reply(`No hay resultados para "${name}"`);
+    }
+
+    return ctx.reply(`${video.title}: ${video.url}`);
   }
-
-  const video = await findVideoInfo(name);
-  if (video === null) {
-    return ctx.reply(`No hay resultados para "${name}"`);
+  catch(error) {
+    return ctx.reply('Ocurrió un error interno');
   }
-
-  return ctx.reply(`${video.title}: ${video.url}`);
 }
