@@ -2,7 +2,7 @@ const searchYT = require('yt-search');
 
 async function findVideoInfo(query) {
   const result = await searchYT(`${query} audio`);
-  return (result.videos.length > 1) ? results.videos[0] : null;
+  return result.videos.length > 1 ? result.videos[0] : null;
 }
 
 module.exports = async ctx => {
@@ -24,6 +24,6 @@ module.exports = async ctx => {
     return ctx.reply(`${video.title}: ${video.url}`);
   }
   catch(error) {
-    return ctx.reply('Ocurrió un error interno');
+    return ctx.reply(`Ocurrió un error interno: ${typeof error !== 'string' ? JSON.stringify(error) : error}`);
   }
 }
